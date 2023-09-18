@@ -10,14 +10,13 @@ pipeline {
                 sh 'mvn package'
             }
         }
-    }
         stage('Build Podman Image') {
             steps {
                 echo "Building the Podman image..."
                 sh 'podman build -t lab-app:javamaven-3.9 .'
                 }
         }
-
+    }
     post {
         success {
             echo "Success! The pipeline has completed successfully."
