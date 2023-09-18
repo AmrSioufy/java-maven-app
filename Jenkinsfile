@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { docker { image 'docker.io/brody/openjdk17-alpine' } }
     tools {
         maven 'maven-3.9'
     }
@@ -8,20 +8,6 @@ pipeline {
             steps {
                 echo "Building the application..."
                 sh 'mvn package'
-            }
-        }
-
-        stage('Build Podman Image') {
-            steps {
-                echo "Building the Podman image..."
-                sh 'podman build -t lab-app:javamaven-3.9 .'
-                }
-        }
-
-        stage('Deploy App') {
-            steps {
-                echo "Deploying the application..."
-                sh 'podman run -d --name demo-java-application --restart=on-failure -v java-application:/var/java-application:Z -p 28888:28888 localhost/lab-app:javamaven-3.9'
             }
         }
     }
