@@ -1,11 +1,8 @@
-# Use an official OpenJDK runtime as a parent image
-FROM docker.io/brody/openjdk17-alpine
+FROM openjdk:8-jre-alpine
 
-# Set the working directory to /app
-WORKDIR /app
+EXPOSE 8080
 
-# Copy the JAR file into the container at /app
-COPY ./target/*.jar ./app.jar
+COPY ./target/java-maven-app-*.jar /usr/app/
+WORKDIR /usr/app
 
-# Define the command to run your application when the container starts
-CMD ["java", "-jar", "app.jar"]
+CMD java -jar java-maven-app-*.jar
