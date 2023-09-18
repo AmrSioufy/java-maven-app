@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM docker.io/brody/openjdk17-alpine:latest
 
 EXPOSE 8080
 
