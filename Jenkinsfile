@@ -1,5 +1,5 @@
 pipeline {
-    agent {any
+    agent any
     tools {
         maven 'maven-3.9'
     }
@@ -28,3 +28,4 @@ pipeline {
             // You can add further actions or notifications on failure here
         }
     }
+}
