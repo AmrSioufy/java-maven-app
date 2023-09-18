@@ -28,4 +28,3 @@ pipeline {
             // You can add further actions or notifications on failure here
         }
     }
-}
