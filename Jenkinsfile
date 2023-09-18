@@ -16,6 +16,13 @@ pipeline {
                 sh 'podman build -t lab-app:javamaven-3.9 .'
                 }
         }
+        stage('Deploy App') {
+            steps {
+                echo "Deploying the application..."
+                sh 'cp -r $(find /var/lib/jenkins/.local/share/containers/storage/overlay-images/ -type f -mmin -2) /var/lib/containers/storage/overlay-images' 
+                sh 'podman run -d --name demo-java-application --restart=on-failure -v java-application:/var/java-application:Z -p 28888:28888 localhost/lab-app:javamaven-3.9'
+            }
+        }
     }
     post {
         success {
