@@ -1,6 +1,6 @@
 FROM docker.io/brody/openjdk17-alpine
 
-EXPOSE 8080
+EXPOSE 2888
 
 COPY ./target/java-maven-app-*.jar /usr/app/
 WORKDIR /usr/app
