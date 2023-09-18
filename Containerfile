@@ -1,4 +1,4 @@
-FROM docker.io/adoptopenjdk/maven-openjdk11
+FROM docker.io/brody/openjdk17-alpine
 
 EXPOSE 8080
 
