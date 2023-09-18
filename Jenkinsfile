@@ -1,38 +1,39 @@
-def gv
-
 pipeline {
     agent any
+    
     stages {
-        stage("init") {
+        stage('Build Jar') {
             steps {
-                script {
-                    gv = load "script.groovy"
+                echo "Building the application..."
+                sh 'mvn package'
+            }
+        }
+
+        stage('Build Podman Image') {
+            steps {
+                echo "Building the Podman image..."
+                    sh 'podman build -t lab-app:javamaven-3.9 .'
+                    sh 'podman run -d --name java-application --restart-on-failure -v java-application:/var/java-application:Z -p 8080:8080 localhost/lab-app:javamaven-3.9
                 }
             }
         }
-        stage("build jar") {
+
+        stage('Deploy App') {
             steps {
-                script {
-                    echo "building jar"
-                    //gv.buildJar()
-                }
+                echo "Deploying the application..."
+                // Add deployment steps here if needed
             }
         }
-        stage("build image") {
-            steps {
-                script {
-                    echo "building image"
-                    //gv.buildImage()
-                }
-            }
+    }
+    
+    post {
+        success {
+            echo "Success! The pipeline has completed successfully."
+            // You can add further actions or notifications on success here
         }
-        stage("deploy") {
-            steps {
-                script {
-                    echo "deploying"
-                    //gv.deployApp()
-                }
-            }
+        failure {
+            echo "Pipeline failed. Please investigate and take necessary actions."
+            // You can add further actions or notifications on failure here
         }
-    }   
+    }
 }
