@@ -25,7 +25,7 @@ pipeline {
         stage('Deploy Application') {
             steps {
                 echo "Deploying the application..."
-                sh 'podman run -d --name demo-java-application --restart=on-failure -v java-application:/var/java-application:Z -p 8888:8080 localhost/demo1-lab-app:javamaven-3.9'
+                sh 'sudo podman run -d --name demo-java-application --restart=on-failure -v java-application:/var/java-application:Z -p 8888:8080 localhost/demo1-lab-app:javamaven-3.9'
             }
         }
     }
