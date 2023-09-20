@@ -15,10 +15,17 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'redhat registry', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                     echo "Building the Podman image..."
                     sh "echo $PASS | sudo podman login registry.redhat.io -u $USER --password-stdin"
-                    sh 'sudo podman build -t demo-lab-app:javamaven-3.9 .'
+                    sh 'sudo podman build -t demo1-lab-app:javamaven-3.9 .'
                     sh 'sudo podman images'
                     sh 'sudo whoami'
                 }
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                echo "Deploying the application..."
+                sh 'podman run -d --name demo-java-application --restart=on-failure -v java-application:/var/java-application:Z -p 8888:8080 localhost/demo1-lab-app:javamaven-3.9'
             }
         }
     }
