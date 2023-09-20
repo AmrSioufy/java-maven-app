@@ -1,4 +1,4 @@
-FROM docker.io/brody/openjdk17-alpine
+FROM registry.redhat.io/openjdk/openjdk-11-rhel8
 
 EXPOSE 2888
 
