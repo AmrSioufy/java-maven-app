@@ -1,6 +1,6 @@
 FROM registry.redhat.io/openjdk/openjdk-11-rhel8
 
-EXPOSE 2888
+EXPOSE 8080
 
 COPY ./target/java-maven-app-*.jar /usr/app/
 WORKDIR /usr/app
