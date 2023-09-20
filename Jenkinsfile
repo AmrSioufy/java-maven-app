@@ -12,13 +12,14 @@ pipeline {
         }
         stage('Build Podman Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'redhat registry', passwordVariable: 'PASS', usernameVariable: 'USER')])
-                echo "Building the Podman image..."
-                sh "echo $PASS | podman login -u $USER --password-stdin"
-                sh 'sudo podman build -t lab-app:javamaven-3.9 .'
-                sh 'sudo podman images'
-                sh 'sudo whoami'
+                withCredentials([usernamePassword(credentialsId: 'redhat registry', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    echo "Building the Podman image..."
+                    sh "echo $PASS | podman login -u $USER --password-stdin"
+                    sh 'sudo podman build -t lab-app:javamaven-3.9 .'
+                    sh 'sudo podman images'
+                    sh 'sudo whoami'
                 }
+            }
         }
     }
     post {
