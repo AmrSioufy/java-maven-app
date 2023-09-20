@@ -32,6 +32,7 @@ pipeline {
     post {
         success {
             echo "Success! The pipeline has completed successfully."
+            sh 'sudo podman exec -it java-lab-application curl http://localhost:8080'
             // You can add further actions or notifications on success here
         }
         failure {
