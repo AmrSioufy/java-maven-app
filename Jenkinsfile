@@ -14,6 +14,8 @@ pipeline {
             steps {
                 echo "Building the Podman image..."
                 sh 'podman build -t lab-app:javamaven-3.9 .'
+                sh 'podman images'
+                sh 'whoami'
                 }
         }
     }
