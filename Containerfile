@@ -1,5 +1,6 @@
-FROM registry.redhat.io/openjdk/openjdk-11-rhel8
+#FROM registry.redhat.io/openjdk/openjdk-11-rhel8
 
+FROM docker.io/gtonic/openjdk-11-rhel8
 EXPOSE 8080
 
 COPY ./target/java-maven-app-*.jar /usr/app/
