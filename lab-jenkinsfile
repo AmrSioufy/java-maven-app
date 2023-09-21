@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy Application') {
             steps {
                 echo "Deploying the application..."
-                sh 'docker run -d --name java-lab-application --restart=on-failure -v java-application:/var/java-application:Z -p 8888:8080 localhost/java-lab-app:javamaven-3.9'
+                sh 'docker run -d --name java-lab-application --restart=on-failure -v java-application:/var/java-application:Z -p 8888:8080 java-lab-app:javamaven-3.9'
             }
         }
     }
