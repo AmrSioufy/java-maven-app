@@ -13,9 +13,10 @@ pipeline {
         stage('Build Podman Image') {
             steps {
                 echo "Building the Podman image..."
+                sh 'whoami'
                 sh 'docker build -t java-lab-app:javamaven-3.9 .'
                 sh 'docker images'
-                sh 'whoami'
+                
                 }
             }
         
