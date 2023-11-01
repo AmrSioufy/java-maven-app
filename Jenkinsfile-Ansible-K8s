@@ -24,8 +24,10 @@ pipeline {
 
         stage('Configure Application Image With Ansible') {
             steps {
-                echo "Configuring the application with Ansible..."
-                sh 'ansible-playbook playbook.yaml'
+                withCredentials([usernamePassword(credentialsId: 'docker registry', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    echo "Configuring the application with Ansible..."
+                    sh 'ansible-playbook playbook.yaml'
+                }
             }
         }
         stage('Deploy Application On K8s') {
