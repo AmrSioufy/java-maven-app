@@ -26,6 +26,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker registry', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                     echo "Configuring the application with Ansible..."
+                    sh "echo $PASS | sudo podman login docker.io -u $USER --password-stdin"
                     sh 'ansible-playbook playbook.yaml'
                 }
             }
