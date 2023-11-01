@@ -18,7 +18,6 @@ pipeline {
                     sh 'sudo podman build -t java-maven:latest .'
                     sh 'sudo podman images'
                     sh 'sudo whoami'
-                    sh 'sudo export KUBECONFIG=/home/admin/.kube/config'
                 }
             }
         }
@@ -36,7 +35,7 @@ pipeline {
             steps {
                 echo "Deploying the application in your K8S Cluster Using Ansible..."
                 sh 'ls -l'
-                sh 'sudo ansible-playbook k8splaybook.yaml'
+                sh 'ansible-playbook k8splaybook.yaml'
             }
         }
     }
