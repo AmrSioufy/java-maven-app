@@ -1,0 +1,13 @@
+---
+- name: Podman Development & Deployment
+  hosts: localhost
+  become: true
+  tasks:
+    #  - name: Building docker/podman image
+    #command: "podman build -t java-maven:latest"
+
+  - name: Tag docker/podman image
+    command: "podman tag localhost/java-maven:latest docker.io/amrsioufy/java-maven:latest"
+
+  - name: Push docker/podman image
+    command: "podman push docker.io/amrsioufy/java-maven:latest"
