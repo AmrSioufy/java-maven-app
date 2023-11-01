@@ -18,7 +18,7 @@ spec:
       containers:
       - name: java-maven
         image: amrsioufy/java-maven:latest
-        imagePullPolicy: Always
+        imagePullPolicy: Missing
         ports:
         - containerPort: 8080
   strategy:
