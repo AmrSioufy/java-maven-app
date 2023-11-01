@@ -1,0 +1,9 @@
+- name: K8s Deployment
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Deploy the application
+    command: "kubectl apply -f application.yaml"
+
+  - name: Update the application
+    command: "kubectl rollout restart deployment/java-maven"
