@@ -11,4 +11,4 @@
 
   - name: Push docker/podman image
     #command: "podman push docker.io/amrsioufy/java-maven:latest"
-    command: "podman ps > /dev/null"
+    shell: "echo test > /dev/null"
