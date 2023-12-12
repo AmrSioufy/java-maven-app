@@ -35,7 +35,6 @@ pipeline {
             steps {
                 echo "Deploying the application in your K8S Cluster Using Ansible..."
                 sh 'ls -l'
-                #sh 'ansible-playbook k8splaybook.yaml'
                 sh 'curl -X POST -H "Content-Type: application/yaml" --data-binary @application.yaml
 https://192.168.39.41:8443/apis/apps/v1/namespaces/default/deployments --
 cacert /home/student/.minikube/ca.crt --cert
