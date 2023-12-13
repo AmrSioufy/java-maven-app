@@ -42,7 +42,7 @@ pipeline {
     post {
         success {
             echo "Success! The pipeline has completed successfully."
-            sh 'curl -X GET https://192.168.39.41:8443/api/v1/namespaces/kube-system/pods --cacert /home/student/.minikube/ca.crt --cert /home/student/.minikube/profiles/minikube/client.crt --key /home/student/.minikube/profiles/minikube/client.key'            
+            sh 'curl -X GET https://192.168.39.41:8443/api/v1/namespaces/default/pods --cacert /home/student/.minikube/ca.crt --cert /home/student/.minikube/profiles/minikube/client.crt --key /home/student/.minikube/profiles/minikube/client.key'            
             // You can add further actions or notifications on success here
         }
         failure {
